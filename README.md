@@ -7,7 +7,7 @@ This firmware is divided into two parts:
    * board-agnostic / generic firmware is stored in common directory. The top file there is common/hdl/gem_amc.vhd. This part implements the rest of the logic, which includes GEM stuff, GBT cores, and XDCFEB specific GBT driver for loading firmware and controlling the various switches on the XDCFEB.
 
 The XDCFEB has a lot of switches related to FPGA programming, like selecting the clock source, the bus width, master/slave mode. These are all controlled with a VIO in this firmware, called vio_dcfeb_config (found in common/hdl/gem_amc.vhd).
-The firmware loader is called oh_fpga_loader (common/hdl/misc/oh_fpga_loader.vhd), which is instantiated in gem_amc.vhd. It is loading the firmware using 16bits @ 80MHz, and is connected to GBT frame in a generate block called i_glue_fpga_loader_to_gbt in gem_amc.vhd.
+The firmware loader is called oh_fpga_loader (common/hdl/misc/oh_fpga_loader.vhd), which is instantiated in gem_amc.vhd. It is loading the firmware using 8bits @ 80MHz, and is connected to GBT frame in a generate block called i_glue_fpga_loader_to_gbt in gem_amc.vhd.
 
 Note that this repository excludes Vivado project directories entirely to avoid generated files, although XPR file is included ctp7/work_dir. This XPR file is referencing the source code outside work_dir and once opened will generate a Vivado project in the work_dir. Please do not commit any files from the work_dir other than XPR. IPs are stored in ctp7/ip. 
 
